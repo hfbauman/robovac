@@ -806,7 +806,7 @@ class RoboVacEntity(StateVacuumEntity):
             return
 
         payload: dict[str, Any] = {
-            self.get_dps_code("MODE"): self.vacuum.getRoboVacCommandValue(RobovacCommand.MODE, "auto")
+            self.get_dps_code("START_PAUSE"): self.vacuum.getRoboVacCommandValue(RobovacCommand.START_PAUSE, "start")
         }
 
         # For models with boolean START_PAUSE (e.g. T2118, T2128), also toggle start
