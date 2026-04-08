@@ -836,10 +836,6 @@ class RoboVacEntity(StateVacuumEntity):
         _LOGGER.debug(
             "Pause debug: config_model=%s selected_profile=%s start_val=%r pause_val=%r start_pause_dps=%s",
             self.model_code,
-            type(self.vacuum.model_details).name if self.vacuum else None,
-            self.vacuum.getRoboVacCommandValue(RobovacCommand.START_PAUSE, "start") if self.vacuum else None,
-            self.vacuum.getRoboVacCommandValue(RobovacCommand.START_PAUSE, "pause") if self.vacuum else None,
-            self.get_dps_code("START_PAUSE"),
             )
 
         await self.vacuum.async_set(payload)
