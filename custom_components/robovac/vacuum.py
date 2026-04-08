@@ -828,11 +828,13 @@ class RoboVacEntity(StateVacuumEntity):
             _LOGGER.error("Cannot pause vacuum: vacuum not initialized")
             return
         
-        _LOGGER.debug("Pausing vacuum")
-
-        await self.vacuum.async_set({
+        payload: dict[str, Any] = {
             self.get_dps_code("START_PAUSE"): self.vacuum.getRoboVacCommandValue(RobovacCommand.START_PAUSE, "pause")
-        })
+        }
+        
+        _LOGGER.debug("Pausing vacuum with payload: %s", payload)
+
+        await self.vacuum.async_set(payload)
 
     async def async_stop(self, **kwargs: Any) -> None:
         """Stop the vacuum cleaner.
