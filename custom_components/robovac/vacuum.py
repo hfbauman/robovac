@@ -813,6 +813,8 @@ class RoboVacEntity(StateVacuumEntity):
         start_value = self.vacuum.getRoboVacCommandValue(RobovacCommand.START_PAUSE, "start")
         if start_value != "start":
             payload[self.get_dps_code("START_PAUSE")] = start_value
+        
+        _LOGGER.debug("Starting vacuum with payload: %s", payload)
 
         await self.vacuum.async_set(payload)
 
@@ -825,6 +827,8 @@ class RoboVacEntity(StateVacuumEntity):
         if self.vacuum is None:
             _LOGGER.error("Cannot pause vacuum: vacuum not initialized")
             return
+        
+        _LOGGER.debug("Pausing vacuum")
 
         await self.vacuum.async_set({
             self.get_dps_code("START_PAUSE"): self.vacuum.getRoboVacCommandValue(RobovacCommand.START_PAUSE, "pause")
